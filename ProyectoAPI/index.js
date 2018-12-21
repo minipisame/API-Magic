@@ -33,14 +33,27 @@ function getNombre(){
    var x =   $("input")[0].value;
    return x;
 }
+function getAttack(){
+
+   var x =   $("input")[2].value;
+   return x;
+}
+function getResistencia(){
+
+   var x =   $("input")[3].value;
+   return x;
+}
 function getCoste(){
-if($("input")[2].value != 0){
+if($("input")[1].value != 0){
   return true;
 }
    return false;
 }
  function reset(){
   $("input")[0].value="";
+  $("input")[1].value="";
+  $("input")[2].value="";
+  $("input")[3].value="";
    pagina = 1;
    $("#datos").html("");
  }
@@ -51,24 +64,6 @@ function crearVista(datos){
   $("#datos").append(div);
 
 }
-$("input[type=checkbox]").on( 'click', function() {
-    if( $(this).is(':checked') ){
-        // Hacer algo si el checkbox ha sido seleccionado
-        $(this).siblings('label').css({
-
-              "filter"         : "brightness(500%)",
-     "-webkit-filter" : "brightness(500%)",
-     "-moz-filter"    : "brightness(500%)",
-     "-o-filter"      : "brightness(500%)",
-     "-ms-filter"     : "brightness(500%)"
-
-        })
-    } else {
-        // Hacer algo si el checkbox ha sido deseleccionado
-        alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
-    }
-});
-
 
 
 
@@ -137,3 +132,30 @@ else{
     }
   });
 });
+
+
+
+
+
+
+function prueba(){
+
+
+  
+  $.ajax({
+
+        url: "https://api.magicthegathering.io/v1/cards?pageSize=100&page="+pagina+"&language=spanish&colors=white,blue" ,
+        dataType: 'json',
+        type: 'GET',
+        success: function(json) {
+          $('a#inifiniteLoader').hide('1000');
+         datosJson = json;
+       crearVista(GetImagen());
+          pagina++;
+   
+    
+          
+        }
+      });
+}
+

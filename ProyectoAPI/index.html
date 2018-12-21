@@ -28,9 +28,21 @@ img{
     width: 70px;
     height: 70px;
 }
-
-input[type="checkbox"] {
-display: none;
+label{
+    color:white;
+}
+.checkeable input {
+  display: none;
+}
+.checkeable input:checked  + img {
+              filter         : brightness(500%);
+     -webkit-filter : brightness(500%);
+     -moz-filter    : brightness(500%);
+     -o-filter    : brightness(500%);
+     -ms-filter :brightness(500%);
+}
+body{
+   background-color: black;
 }
 </style>
 <BODY >
@@ -38,19 +50,18 @@ display: none;
 	<div id="formulario">
 		
     <input  type="search" name="nombre" autofocus   placeholder="Introduzca un nombre de carta o fragmento" required="true" value="" />
-    <input  type="search" name="texto" placeholder="Filtro por texto de la carta,tipo..."/>
-          Coste de mana:
-    <input type="number"  min="0" max="50" name="mana">
-     Ataque:
-    <input type="number"  min="0" max="100" name="ataque">
-       Resistencia:
-    <input type="number"  min="0" max="100" name="resistencia">
+         <label for="mana"> Coste de mana:</label>
+    <input id="mana" type="number"  min="0" max="50" name="mana">
+    <label for="attack">Ataque:</label>
+    <input id="attack" type="number"  min="0" max="100" name="ataque">
+    <label for="resistencia">Resistencia:</label>
+    <input id="resistencia" type="number"  min="0" max="100" name="resistencia">
         <br/><br/> 
-<input type="checkbox" id="white" value="w"><label for="white"> <img class="colores" src="img/white.png"></label>
-<input type="checkbox" id="red" value="r"> <label for="red">  <img class="colores" src="img/red.png"></label>
-<input type="checkbox" id="green" value="g"> <label for="green"> <img class="colores" src="img/green.png"></label>
-<input type="checkbox" id="blue" value="u"> <label for="blue"> <img class="colores" src="img/blue.png"></label>
-<input type="checkbox" id="black" value="b"> <label for="black"><img class="colores" src="img/black.png"></label>
+<label class="checkeable"><input type="checkbox" id="white" value="w"> <img class="colores" src="img/white.png"></label>
+<label class="checkeable"><input type="checkbox" id="red" value="r">  <img class="colores" src="img/red.png"></label>
+<label class="checkeable"><input type="checkbox" id="green" value="g">  <img class="colores" src="img/green.png"></label>
+<label class="checkeable"><input type="checkbox" id="blue" value="u"> <img class="colores" src="img/blue2.png"></label>
+<label class="checkeable"><input type="checkbox" id="black" value="b"> <img class="colores" src="img/black.png"></label>
   <br/>
 
     
