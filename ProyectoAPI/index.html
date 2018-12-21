@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+<TITLE> API MAGIC </TITLE>
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</HEAD>
+<style>
+a#inifiniteLoader{
+    position: fixed;  
+    z-index: 2;  
+    bottom: 15px;   
+    right: 10px; 
+    display:none;
+}
+img{
+    margin: 10px;
+}
+#formulario{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.colores{
+    width: 70px;
+    height: 70px;
+}
+
+input[type="checkbox"] {
+display: none;
+}
+</style>
+<BODY >
+	
+	<div id="formulario">
+		
+    <input  type="search" name="nombre" autofocus   placeholder="Introduzca un nombre de carta o fragmento" required="true" value="" />
+    <input  type="search" name="texto" placeholder="Filtro por texto de la carta,tipo..."/>
+          Coste de mana:
+    <input type="number"  min="0" max="50" name="mana">
+     Ataque:
+    <input type="number"  min="0" max="100" name="ataque">
+       Resistencia:
+    <input type="number"  min="0" max="100" name="resistencia">
+        <br/><br/> 
+<input type="checkbox" id="white" value="w"><label for="white"> <img class="colores" src="img/white.png"></label>
+<input type="checkbox" id="red" value="r"> <label for="red">  <img class="colores" src="img/red.png"></label>
+<input type="checkbox" id="green" value="g"> <label for="green"> <img class="colores" src="img/green.png"></label>
+<input type="checkbox" id="blue" value="u"> <label for="blue"> <img class="colores" src="img/blue.png"></label>
+<input type="checkbox" id="black" value="b"> <label for="black"><img class="colores" src="img/black.png"></label>
+  <br/>
+
+    
+    <button id="buscar">Buscar</button>
+    <button onclick="reset()">Limpieza</button>
+	</div>
+  <a id="inifiniteLoader">Loading... <img src="img/espera.gif" /></a>
+	<div id="datos">
+	</div>
+
+</BODY>
+<script  src= "index.js"> </script>
+</HTML>
