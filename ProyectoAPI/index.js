@@ -1,4 +1,9 @@
 // MODELO
+var name='';
+var mana='';
+var attack='';
+var resist= '';
+var colors='';
 var cantidad=10;
 var pagina = 1;
 var datosJson;
@@ -30,24 +35,37 @@ function GetImagen() {
 }
 function getNombre(){
 
-   var x =   $("input")[0].value;
-   return x;
-}
+   name =$("input")[0].value;
+   }
 function getAttack(){
 
-   var x =   $("input")[2].value;
-   return x;
+attack =$("input")[2].value;
 }
 function getResistencia(){
 
-   var x =   $("input")[3].value;
-   return x;
+   resist =$("input")[3].value;
+
 }
 function getCoste(){
-if($("input")[1].value != 0){
-  return true;
+mana = $("input")[1].value ;
 }
-   return false;
+
+function getColors(){
+if( $('#white').prop('checked') ) {
+    colors +=  $('#white').val()+"|"; 
+}
+if( $('#red').prop('checked') ) {
+       colors +=  $('#red').val()+"|";
+}
+if( $('#green').prop('checked') ) {
+       colors +=  $('#green').val()+"|";
+}
+if( $('#blue').prop('checked') ) {
+       colors +=  $('#blue').val()+"|";
+}
+if( $('#black').prop('checked') ) {
+       colors +=  $('#black').val()+"|";
+}
 }
  function reset(){
   $("input")[0].value="";
@@ -72,32 +90,37 @@ function crearVista(datos){
 
 $("#buscar").click(function(){
   pagina=1;
-     $("#datos").html("");
-     if(getCoste() == true){
-chargeCards(getNombre(),$("input")[2].value)
-}
-else{
-  chargeCards(getNombre(),"")
-}
+    $("#datos").html("");
+    name='';
+    mana='';
+    attack='';
+    resist= '';
+    colors='';
+    getNombre();
+    getCoste();
+    getResistencia();
+    getAttack();
+    getColors();
+    chargeCards(name,mana,attack,resist,colors);
 
 }
 );
 
 var peticionCurso = false;
-function chargeCards(nombre,cmc){
+function chargeCards(nombre,cmc,ataque,resist,colors){
 
   if(!peticionCurso){
-   $('a#inifiniteLoader').show('fast');
+   $('img#slidecaption').show('slow');
   
 
 peticionCurso=true;
   $.ajax({
 
-        url: "https://api.magicthegathering.io/v1/cards?pageSize="+cantidad+"&page="+pagina+"&name="+nombre+"&cmc="+cmc+"&language=spanish" ,
+        url: "https://api.magicthegathering.io/v1/cards?pageSize="+cantidad+"&page="+pagina+"&name="+nombre+"&cmc="+cmc+"&power="+ataque+"&toughness="+resist+"&colors="+colors+"&language=spanish" ,
         dataType: 'json',
         type: 'GET',
         success: function(json) {
-          $('a#inifiniteLoader').hide('1000');
+          $('img#slidecaption').hide('2000');
          datosJson = json;
        crearVista(GetImagen());
           pagina++;
@@ -113,19 +136,14 @@ peticionCurso=true;
 
 $(document).ready(function() {
   var win = $(window);
-chargeCards("","");
+chargeCards("","","","","");
 
   // Each time the user scrolls
   win.scroll(function() {
     // End of the document reached?
     if ($(document).height() - win.innerHeight() <= win.scrollTop()) {
+    chargeCards(name,mana,attack,resist,colors);
 
-      if(getCoste() == true){
-chargeCards(getNombre(),$("input")[2].value)
-}
-else{
-  chargeCards(getNombre(),"")
-}
     
           
     
@@ -138,24 +156,4 @@ else{
 
 
 
-function prueba(){
-
-
-  
-  $.ajax({
-
-        url: "https://api.magicthegathering.io/v1/cards?pageSize=100&page="+pagina+"&language=spanish&colors=white,blue" ,
-        dataType: 'json',
-        type: 'GET',
-        success: function(json) {
-          $('a#inifiniteLoader').hide('1000');
-         datosJson = json;
-       crearVista(GetImagen());
-          pagina++;
-   
-    
-          
-        }
-      });
-}
 

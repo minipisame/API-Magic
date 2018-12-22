@@ -9,13 +9,53 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </HEAD>
 <style>
-a#inifiniteLoader{
+
+#slidecaption {
+     -webkit-animation-name: spinner; 
+    -webkit-animation-timing-function: linear; 
+    -webkit-animation-iteration-count: infinite; 
+    -webkit-animation-duration: 1s; 
+    animation-name: spinner; 
+    animation-timing-function: linear; 
+    animation-iteration-count: infinite; 
+    animation-duration: 1s; 
+    -webkit-transform-style: preserve-3d; 
+    -moz-transform-style: preserve-3d; 
+    -ms-transform-style: preserve-3d; 
+    transform-style: preserve-3d;
+}
+
+  /* WebKit and Opera browsers */ @-webkit-keyframes spinner { 
+    from 
+    { 
+        -webkit-transform: rotateY(0deg); 
+    } 
+    to { 
+        -webkit-transform: rotateY(-360deg); 
+    } 
+} /* all other browsers */ 
+@keyframes spinner { 
+    from { 
+        -moz-transform: rotateY(0deg); 
+        -ms-transform: rotateY(0deg); 
+        transform: rotateY(0deg); 
+    } 
+    to 
+    { 
+        -moz-transform: rotateY(-360deg); 
+        -ms-transform: rotateY(-360deg); 
+        transform: rotateY(-360deg); 
+    
+    } 
+}
+img#slidecaption{
     position: fixed;  
     z-index: 2;  
     bottom: 15px;   
     right: 10px; 
     display:none;
 }
+
 img{
     margin: 10px;
 }
@@ -57,18 +97,18 @@ body{
     <label for="resistencia">Resistencia:</label>
     <input id="resistencia" type="number"  min="0" max="100" name="resistencia">
         <br/><br/> 
-<label class="checkeable"><input type="checkbox" id="white" value="w"> <img class="colores" src="img/white.png"></label>
-<label class="checkeable"><input type="checkbox" id="red" value="r">  <img class="colores" src="img/red.png"></label>
-<label class="checkeable"><input type="checkbox" id="green" value="g">  <img class="colores" src="img/green.png"></label>
-<label class="checkeable"><input type="checkbox" id="blue" value="u"> <img class="colores" src="img/blue2.png"></label>
-<label class="checkeable"><input type="checkbox" id="black" value="b"> <img class="colores" src="img/black.png"></label>
+<label class="checkeable"><input type="checkbox" id="white" value="white"> <img class="colores" src="img/white.png"></label>
+<label class="checkeable"><input type="checkbox" id="red" value="red">  <img class="colores" src="img/red.png"></label>
+<label class="checkeable"><input type="checkbox" id="green" value="green">  <img class="colores" src="img/green.png"></label>
+<label class="checkeable"><input type="checkbox" id="blue" value="blue"> <img class="colores" src="img/blue.png"></label>
+<label class="checkeable"><input type="checkbox" id="black" value="black"> <img class="colores" src="img/black.png"></label>
   <br/>
 
     
     <button id="buscar">Buscar</button>
     <button onclick="reset()">Limpieza</button>
 	</div>
-  <a id="inifiniteLoader">Loading... <img src="img/espera.gif" /></a>
+<img id="slidecaption" src="img/magic.jpg" />
 	<div id="datos">
 	</div>
 
